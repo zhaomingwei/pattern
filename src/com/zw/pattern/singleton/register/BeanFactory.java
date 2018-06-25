@@ -12,21 +12,26 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BeanFactory {
 
+    private BeanFactory(){}
+
     //ConcurrentHashMap线程安全
     private static Map ioc = new ConcurrentHashMap();
 
     public static Object getBean(String className){
-        if(ioc.containsKey(className)){
-            return ioc.get(className);
+        synchronized(ioc){
+            if(ioc.containsKey(className)){
+                return ioc.get(className);
+            }
+            Object obj = null;
+            try {
+                obj = Class.forName(className).newInstance();
+                // 如果实例对象在不存在，我们注册到单例注册表中。
+                ioc.put(className, obj);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return obj;
         }
-        Object obj = null;
-        try {
-            obj = Class.forName(className).getInterfaces();
-            ioc.put(className, obj);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return obj;
     }
 
 }

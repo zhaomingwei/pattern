@@ -10,19 +10,21 @@ import java.util.concurrent.CountDownLatch;
 public class BeanFactoryTest {
 
     public static void main(String[] args) {
-        int count = 100000;
+        int count = 200;
         CountDownLatch latch = new CountDownLatch(count);
         long start = System.currentTimeMillis();
         for(int i=0;i<count;i++){
             new Thread(){
                 public void run(){
                     try {
-                        //阻塞
+                        // 阻塞
+                        // count = 0 就会释放所有的共享锁
+                        // 万箭齐发
                         latch.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    Object obj = BeanFactory.getBean("com.zw.pattern.Pojo");
+                    Object obj = BeanFactory.getBean("com.zw.pattern.singleton.Pojo");
                     System.out.println(System.currentTimeMillis() + ":" + obj);
                 }
             }.start();
