@@ -9,11 +9,11 @@ package com.zw.pattern.singleton.lazy;
  */
 public class LazyThree {
 
-    private boolean initialized = false;
+    private static boolean initialized = false;
 
     private LazyThree(){
         synchronized (LazyThree.class){
-            if(false == initialized){
+            if(initialized == false){
                 initialized = !initialized;
             }else {
                 throw new RuntimeException("单例已被侵犯了");

@@ -2,7 +2,7 @@ package com.zw.pattern.singleton.register;
 
 public enum  RegisterEnum {
 
-    INSTANCE,BLACK,WHITH;
+    INSTANCE,BLACK,WHITE;
     public void getInstance(){}
 
 }
