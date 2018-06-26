@@ -1,14 +1,13 @@
 package com.zw.pattern.proxy.jdk;
 
-import sun.misc.ProxyGenerator;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import com.zw.pattern.proxy.custom.GPMeiPo;
+import com.zw.pattern.proxy.custom.GPPerson;
+import com.zw.pattern.proxy.custom.GPXiaoMin;
 
 public class JDKProxyTest {
 
     public static void main(String[] args) {
-        Person person = (Person) new MeiPo().bind(new XiaoMin());
+        GPPerson person = (GPPerson) new GPMeiPo().bind(new GPXiaoMin());
         System.out.println(person.getClass());
         person.findGF();
 
@@ -23,17 +22,17 @@ public class JDKProxyTest {
         //JDK中有个规范，只要要是$开头的一般都是自动生成的
 
         //通过反编译工具可以查看源代码
-        byte [] bytes = ProxyGenerator.generateProxyClass("$Proxy0",new Class[]{Person.class});
-        FileOutputStream os = null;
-        try {
-            os = new FileOutputStream("I://$Proxy0.class");
-            os.write(bytes);
-            os.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-
-        }
+//        byte [] bytes = ProxyGenerator.generateProxyClass("$Proxy0",new Class[]{Person.class});
+//        FileOutputStream os = null;
+//        try {
+//            os = new FileOutputStream("E://$Proxy0.class");
+//            os.write(bytes);
+//            os.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }finally {
+//
+//        }
 
 
     }

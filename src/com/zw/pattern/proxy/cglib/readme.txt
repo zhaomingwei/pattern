@@ -1,5 +1,5 @@
 1、建立一个代理类实现MethodInterceptor接口
-2、用cglib包里Enhancer增强类生产传入类型的代理类
+2、用cglib包里Enhancer增强类生成传入类型的代理类
 3、重写intercept方法，此方法是代理方法可添加附属操作
 
 使用：
