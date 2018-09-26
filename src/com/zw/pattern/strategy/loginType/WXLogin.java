@@ -3,7 +3,7 @@ package com.zw.pattern.strategy.loginType;
 import com.zw.pattern.strategy.LoginState;
 import com.zw.pattern.strategy.User;
 
-public class WXLogin implements LoginChannel {
+public class  WXLogin implements LoginChannel {
 
     @Override
     public LoginState login(String userName, String sex, int age) {

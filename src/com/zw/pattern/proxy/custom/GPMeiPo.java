@@ -18,8 +18,7 @@ public class GPMeiPo implements GPInvocationHandler {
      */
     public Object bind(Object target){
         this.target = target;
-        return GPProxy.newProxyInstance(new GPClassLoader(),
-                target.getClass().getInterfaces(), this);
+        return GPProxy.newProxyInstance(new GPClassLoader(), target.getClass().getInterfaces(), this);
     }
 
     /**
